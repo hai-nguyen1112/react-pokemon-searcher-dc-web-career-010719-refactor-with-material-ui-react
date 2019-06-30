@@ -1,15 +1,22 @@
 import React from 'react'
 import PokemonCard from './PokemonCard'
-import { Card } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import Grid from '@material-ui/core/Grid'
 
-class PokemonCollection extends React.Component {
-  render() {
-    return (
-      <Card.Group itemsPerRow={6}>
-        <h1>Hello From Pokemon Collection</h1>
-      </Card.Group>
-    )
+const PokemonCollection = ({pokemons}) => {
+  let pokemonCards = pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)
+  return (
+      <Grid container spacing={2}>
+        {pokemonCards}
+      </Grid>
+  )
+}
+
+const mapStateToProps = state => {
+  return {
+    pokemons: state.pokemons
   }
 }
 
-export default PokemonCollection
+
+export default connect(mapStateToProps)(PokemonCollection)

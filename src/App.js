@@ -1,11 +1,27 @@
 import React from 'react'
 import PokemonIndex from './components/PokemonIndex'
 import './App.css'
+import {connect} from 'react-redux'
+import {fetchPokemons} from './redux/actions'
 
-const App = () => (
-  <div className="App">
-    <PokemonIndex />
-  </div>
-)
+class App extends React.Component {
+  componentDidMount() {
+    this.props.onPokemonsFetch()
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        <PokemonIndex />
+      </div>
+    )
+  }
+}
 
-export default App
+const mapDispatchToProps = dispatch => {
+  return {
+    onPokemonsFetch: () => dispatch(fetchPokemons())
+  }
+}
+
+export default connect(null, mapDispatchToProps)(App)
