@@ -13,4 +13,11 @@ function fetchedPokemons(pokemons) {
   }
 }
 
-export {fetchPokemons}
+function changedSearchTerm(text) {
+  return {
+    type: "SEARCH_TERM_WAS_CHANGED",
+    payload: text
+  }
+}
+
+export {fetchPokemons, changedSearchTerm}

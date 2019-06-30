@@ -9,8 +9,18 @@ const pokemonsReducer = (oldState=[], action) => {
   }
 }
 
+const searchTermReducer = (oldState="", action) => {
+  switch (action.type) {
+    case "SEARCH_TERM_WAS_CHANGED":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
-  pokemons: pokemonsReducer
+  pokemons: pokemonsReducer,
+  searchTerm: searchTermReducer
 })
 
 export default rootReducer
